@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>EquiGrade — Submit Assignment</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <main class="container">
+    <header class="header">
+      <a class="brand" href="index.php" aria-label="EquiGrade home">
+        <img src="assets/logo.svg" alt="EquiGrade logo">
+        <div>
+          <div style="font-weight:700;font-size:1.1rem;">EquiGrade</div>
+          <div class="small">FAIR-EVAL AI Grading Assistant</div>
+        </div>
+      </a>
+      <nav>
+        <a class="small" href="index.php">Dashboard</a>
+        <a class="small" href="logout.php" style="margin-left:12px;">Sign out</a>
+      </nav>
+    </header>
+
+    <section class="card" aria-labelledby="submit-heading">
+      <h2 id="submit-heading">Submit assignment</h2>
+      <p class="small">Upload an assignment file and submit it for grading.</p>
+
+      <form id="submitForm" method="post" action="submit.php" enctype="multipart/form-data" novalidate>
+        <!-- Replace the CSRF placeholder with a server-side token when using server templates -->
+        <input type="hidden" name="csrf" value="{{CSRF_TOKEN}}">
+
+        <div class="form-row column">
+          <label for="title">Assignment title</label>
+          <input id="title" name="title" type="text" required placeholder="Essay 1: Climate Policy">
+        </div>
+
+        <div class="form-row">
+          <div style="flex:1;">
+            <label for="assignment_id">Assignment (optional)</label>
+            <select id="assignment_id" name="assignment_id">
+              <option value="">-- Select assignment --</option>
+              <option value="1">NIT2102 — Essay 1</option>
+              <option value="2">NEF3001 — Reflection</option>
+            </select>
+          </div>
+
+          <div style="width:260px;">
+            <label for="file">File (pdf / docx / txt)</label>
+            <input id="file" name="file" type="file" accept=".pdf,.docx,.txt" required>
+          </div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button class="btn btn-primary" type="submit">Upload & send for grading</button>
+          <a class="btn btn-ghost" href="index.php" style="margin-left:8px;">Back to dashboard</a>
+        </div>
+
+        <p class="small" style="margin-top:10px;">Maximum file size: 10MB. Accepted file types: .pdf, .docx, .txt</p>
+      </form>
+    </section>
+
+    <div class="footer">EquiGrade — fair, transparent, rubric-driven grading.</div>
+  </main>
+</body>
+</html>
